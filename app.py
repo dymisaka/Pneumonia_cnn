@@ -43,19 +43,3 @@ def init():
 if __name__ == "__main__":
     app.run()
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-pred=model.predict(img)
-prediction=["nomal","Pneumonia"]
-result=prediction[np.argmax(pred, axis=1)]
-#print(result)
-return(render_template("index.html", result=result, pre=pred)  
-
