@@ -1,8 +1,11 @@
 <html>
-<h1>Pneumonia Prediction</h1>
-<form method="post" action = "/" enctype="multipart/form-data">
-  <input type="file" name="file">
-  <input type="submit" value="Upload">
-</form>
-{{result}}
+    <h1>Pneumonia on CNN</h1>
+    <h2>Upload new File</h2>
+    <form method="post" action = "/" enctype="multipart/form-data">
+     <input type="file" name="file">
+    <input type="submit" value="Upload">
+    </form>
+    <p>The prediction result of the model is: {{result}}</p>
+    <p>Model.predict={{pred}}</p>
+    <p>The model is trained by DING Yan</p>
 </html>
