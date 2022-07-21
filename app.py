@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 from keras.models import load_model
@@ -9,6 +15,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def init():
     if request.method == 'POST':
+        
         file = request.files['file']
         print("File Received")
         filename = secure_filename(file.filename)
@@ -21,8 +28,34 @@ def init():
         img = np.asarray(img, dtype="float32") #need to transfer to np to reshape
         img = img.reshape(1, img.shape[0], img.shape[1], img.shape[2]) #rgb to reshape to 1,100,100,3
         pred=model.predict(img)
-        return(render_template("index.html", result=str(pred)))
+        prediction=np.array(["nomal","Pneumonia"])
+        result=prediction[np.argmax(pred, axis=1)]
+        print(result)
+        #print(result)
+        return(render_template("index.html", result=result, pred=pred))
     else:
-        return(render_template("index.html", result="WAITING"))
+        return(render_template("index.html", result="WAITING", pred="WAITTING"))
+
+
+# In[ ]:
+
+
 if __name__ == "__main__":
     app.run()
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+pred=model.predict(img)
+prediction=["nomal","Pneumonia"]
+result=prediction[np.argmax(pred, axis=1)]
+#print(result)
+return(render_template("index.html", result=result, pre=pred)  
+
